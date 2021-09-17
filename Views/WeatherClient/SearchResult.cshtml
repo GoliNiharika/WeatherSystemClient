@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "SearchResult";
+    Layout = "~/Views/Shared/_AfterLoginLayout.cshtml";
 }
 
 <h1>SearchResult</h1>
@@ -9,7 +10,70 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+@foreach (var item in Model)
+{
+    <div class="row mt-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h1>@Html.DisplayFor(modelItem => item.City)</h1>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="row">
+                                <h4>Temparature</h4>
+                                <p> @Html.DisplayFor(modelItem => item.Temperature) </p>
+                            </div>
+                            <div class="row">
+                                <h4>Visibility</h4>
+                                <p> @Html.DisplayFor(modelItem => item.Visibility) </p>
+                            </div>
+                            <div class="row">
+                                <h4>Humidity</h4>
+                                <p> @Html.DisplayFor(modelItem => item.Humidity) </p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            @if (item.Visibility <= 10)
+                            {
+                                <img src="~/css/misty.jfif" alt="Weather" />
+                            }
+                            @if (item.Visibility > 10 && item.Visibility <= 20)
+                            {
+                                <img src="~/css/cloudy.jfif" alt="Weather" />
+                            }
+                            @if (item.Visibility > 20 && item.Visibility <= 50)
+                            {
+                                <img src="~/css/clear.jfif" alt="Weather" />
+                            }
+                        </div>
+                        <div class="col-4">
+                            @if (item.Visibility <= 10)
+                            {
+                                <p>Today's weather in @item.City is Misty'</p>
+                            }
+                            @if (item.Visibility > 10 && item.Visibility <= 20)
+                            {
+                                <p>Today's weather in @item.City is Cloudy'</p>
+                            }
+                            @if (item.Visibility > 20 && item.Visibility <= 50)
+                            {
+                                <p>Today's weather in @item.City is Clear'</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    @Html.ActionLink("Edit Weather", "EditWeather", new { weatherID = item.Wid }) |
+                    @Html.ActionLink("Weather Details", "WeatherDetail", item) |
+                    @Html.ActionLink("Delete", "DeleteWeather", new { weatherID = item.Wid })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -31,29 +95,30 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Wid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Temperature)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Humidity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Visibility)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Wid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Temperature)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Humidity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Visibility)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
     </tbody>
-</table>
+</table>*@

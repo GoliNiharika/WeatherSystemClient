@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QUDNkIOukdeZeWQFN5YON0B3PenXeBzP5wO/psrYKDhqB2NNY5Crq1eT9Z/e6xeWlYPMGOoHic71AegPfN28ow==",
+  "dgSpecHash": "NcLyy41z0lGaLLVgnRnjcCow3eaiNI0Z2a6arjYBiWiC2cjZjF1ztmYSP+fcZqx81CpqwlopTxO3Rcid/qZZVA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ngoli\\source\\repos\\WeatherClient\\WeatherClient.csproj",
+  "projectFilePath": "C:\\Users\\ngoli\\source\\repos\\WeatherClient\\WeatherSystemClient\\WeatherClient.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ngoli\\.nuget\\packages\\humanizer.core\\2.2.0\\humanizer.core.2.2.0.nupkg.sha512",
     "C:\\Users\\ngoli\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

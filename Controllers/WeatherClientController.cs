@@ -18,10 +18,7 @@ namespace WeatherClient.Controllers
     public class WeatherClientController : Controller
     {
         string Baseurl = "https://localhost:44380/";
-        //static HttpClient httpClient = new HttpClient();
-        //HttpContext context = System.Web.HttpContext.Current;
-        //string baseUrl = context.Request.Url.Authority + context.Request.ApplicationPath.TrimEnd('/');
-    
+        
         public IActionResult Register()
         {
             ViewBag.Initial = "In Register Page";
@@ -87,7 +84,11 @@ namespace WeatherClient.Controllers
 
                 }
             }
-            return RedirectToAction("Login");
+            
+            //Session["User_EmailId"] = email;
+            //TempData["Redirect1"] = "Yes";
+            ViewBag.Redirect = "Yes";
+            return RedirectToAction("GetAllWeatherDetails");
         }
 
         [HttpGet]
@@ -208,27 +209,125 @@ namespace WeatherClient.Controllers
             return View(weather);
         }
 
-        public ActionResult EditWeather(WeatherDetail wd)
+        public async Task<ActionResult> EditWeather(int weatherID)
         {
-            return View();
+            List<WeatherDetail> li = new List<WeatherDetail>();
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.BaseAddress = new Uri(Baseurl);
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                using (var response = await httpClient.GetAsync("api/Weather"))
+                {
+                    var result = response;
+                    string apiResponse = await result.Content.ReadAsStringAsync();
+                    li = JsonConvert.DeserializeObject<List<WeatherDetail>>(apiResponse);
+                }
+            }
+            WeatherDetail cityToBeEdited = new WeatherDetail();
+            try
+            {
+                List<WeatherDetail> cityList = new List<WeatherDetail>();
+                cityList = li.Where(x => x.Wid == weatherID).ToList();
+                cityToBeEdited = cityList[0];
+            }
+            catch(Exception ex)
+            {
+                cityToBeEdited = null;
+                Console.WriteLine(ex);
+            }
+            return View(cityToBeEdited);
         }
-        [HttpDelete]
-        public ActionResult DeleteWeather()
+
+        [HttpPost]
+        public async Task<ActionResult> EditWeather(WeatherDetail weather)
         {
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.BaseAddress = new Uri(Baseurl);
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                StringContent content = new StringContent(JsonConvert.SerializeObject(weather), Encoding.UTF8, "application/json");
 
-            return View();
+                using (var response = await httpClient.PostAsync("api/Weather/EditCity", content))
+                {
+                    var result = response;
+
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    //var status = JsonConvert.DeserializeObject<WeatherDetail>(apiResponse);
+                }
+            }
+            return RedirectToAction("GetAllWeatherDetails");
+        
+        }
+        
+        public async Task<ActionResult> DeleteWeather(int weatherID)
+        {
+            List<WeatherDetail> li = new List<WeatherDetail>();
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.BaseAddress = new Uri(Baseurl);
+                httpClient.BaseAddress = new Uri(Baseurl);
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                using (var response = await httpClient.GetAsync("api/Weather"))
+                {
+                    var result = response;
+                    string apiResponse = await result.Content.ReadAsStringAsync();
+                    li = JsonConvert.DeserializeObject<List<WeatherDetail>>(apiResponse);
+                }
+            }
+            List<WeatherDetail> cityList = new List<WeatherDetail>();
+            cityList = li.Where(x => x.Wid == weatherID).ToList();
+            WeatherDetail cityToBeDeleted = cityList[0];
+            return View(cityToBeDeleted);
         }
 
+        [HttpPost]
+        public async Task<ActionResult> DeleteWeather(WeatherDetail weather)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.BaseAddress = new Uri(Baseurl);
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                StringContent content = new StringContent(JsonConvert.SerializeObject(weather), Encoding.UTF8, "application/json");
+
+                using (var response = await httpClient.PostAsync("api/Weather/DeleteCity", content))
+                {
+                    var result = response;
+
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    //var status = JsonConvert.DeserializeObject<WeatherDetail>(apiResponse);
+                }
+            }
+            return RedirectToAction("GetAllWeatherDetails");
+        }
+            //using (var httpClient = new HttpClient())
+            //{
+            //    httpClient.BaseAddress = new Uri(Baseurl);
+            //    httpClient.DefaultRequestHeaders.Accept.Clear();
+            //    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //    //StringContent content = new StringContent(JsonConvert.SerializeObject(weather), Encoding.UTF8, "application/json");
+
+            //    using (var response = await httpClient.DeleteAsync("api/Weather/DeleteCity" + weather.Wid.ToString()))
+            //    {
+            //        var result = response;
+
+            //        string apiResponse = await response.Content.ReadAsStringAsync();
+            //        //var status = JsonConvert.DeserializeObject<WeatherDetail>(apiResponse);
+            //    }
+            //}
+            //return View();
+        
         //[HttpGet]
         //public async Task<ActionResult> GetWeatherDetails()
         //{
         //    List<WeatherDetail> Pobj = new List<WeatherDetail>();
-            
+
         //    using (var httpClient = new HttpClient())
         //    {
         //        httpClient.BaseAddress = new Uri(Baseurl);
         //        httpClient.DefaultRequestHeaders.Accept.Clear();
-                
+
         //        using (var response = await httpClient.GetAsync("​api/Weather"))
         //        {
         //            var result = response;
