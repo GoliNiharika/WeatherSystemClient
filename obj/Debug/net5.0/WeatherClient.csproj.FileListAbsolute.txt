@@ -828,3 +828,16 @@ C:\Users\ngoli\source\repos\WeatherClient\WeatherSystemClient\obj\Debug\net5.0\R
 C:\Users\ngoli\source\repos\WeatherClient\WeatherSystemClient\obj\Debug\net5.0\Razor\Views\Shared\AfterLoginPage.cshtml.g.cs
 C:\Users\ngoli\source\repos\WeatherClient\WeatherSystemClient\obj\Debug\net5.0\Razor\Views\Shared\_AfterLoginLayout.cshtml.g.cs
 C:\Users\ngoli\source\repos\WeatherClient\WeatherSystemClient\obj\Debug\net5.0\Razor\Views\WeatherClient\GetAllWeatherDetailsWithLayoutChange.cshtml.g.cs
+C:\Users\ngoli\source\repos\WeatherClient\WeatherSystemClient\obj\Debug\net5.0\Razor\Views\Shared\WithoutLoginRegisterLayout.cshtml.g.cs
+C:\Users\ngoli\source\repos\WeatherClient\WeatherSystemClient\bin\Debug\net5.0\Antlr3.Runtime.dll
+C:\Users\ngoli\source\repos\WeatherClient\WeatherSystemClient\bin\Debug\net5.0\System.Web.Mvc.dll
+C:\Users\ngoli\source\repos\WeatherClient\WeatherSystemClient\bin\Debug\net5.0\System.Web.Razor.dll
+C:\Users\ngoli\source\repos\WeatherClient\WeatherSystemClient\bin\Debug\net5.0\System.Web.Optimization.dll
+C:\Users\ngoli\source\repos\WeatherClient\WeatherSystemClient\bin\Debug\net5.0\System.Web.Helpers.dll
+C:\Users\ngoli\source\repos\WeatherClient\WeatherSystemClient\bin\Debug\net5.0\System.Web.WebPages.Deployment.dll
+C:\Users\ngoli\source\repos\WeatherClient\WeatherSystemClient\bin\Debug\net5.0\System.Web.WebPages.Razor.dll
+C:\Users\ngoli\source\repos\WeatherClient\WeatherSystemClient\bin\Debug\net5.0\System.Web.WebPages.dll
+C:\Users\ngoli\source\repos\WeatherClient\WeatherSystemClient\bin\Debug\net5.0\Microsoft.Web.Infrastructure.dll
+C:\Users\ngoli\source\repos\WeatherClient\WeatherSystemClient\bin\Debug\net5.0\WebActivatorEx.dll
+C:\Users\ngoli\source\repos\WeatherClient\WeatherSystemClient\bin\Debug\net5.0\WebGrease.dll
+C:\Users\ngoli\source\repos\WeatherClient\WeatherSystemClient\bin\Debug\net5.0\libman.json

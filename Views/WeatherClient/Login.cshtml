@@ -2,41 +2,121 @@
 
 @{
     ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/WithoutLoginRegisterLayout.cshtml";
 }
-
-<h4>
-    @ViewBag.Msg
+<body style="background-color: #eaffff; ">
+    <h4>
+        @ViewBag.Msg
     </h4>
 
-<h1>Login</h1>
+    <h1>Login</h1>
 
-<h4>UserDetail</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Login">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" type="password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+    <div class="text-center">
+        <div>
+            <div style="width: 350px; margin: 30px auto;">
+                <div style="height:500px; padding: 20px; border-radius: 5px; border: none; color: #999; border-radius: 1px; margin-bottom: 15px; background: #fff; border: 1px solid #f3f3f3; box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);">
+                    <div style=" border-bottom: none; position: relative; justify-content: center;">
+                        <h4 style="color: #636363; text-align: center; font-size: 26px; margin-top: 0; margin-bottom:3rem">Sign In</h4>
+                    </div>
+                    <div>
+                        <form asp-action="Login" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+                            <div class="form-group">
+                                <div style=" margin-bottom: 20px;">
+                                    <div>
+                                        <input asp-for="Email" name="Email" placeholder="Email" style="min-height: 38px; padding-left: 5px; box-shadow: none !important; border-width: 0 0 1px 0; border-radius: 0;" class="form-control" />
+                                        <div class="input-group-append">
+                                            <span style=" max-width: 42px; text-align: center; background: none; border-width: 0 0 1px 0; padding-left: 5px; border-radius: 0;">
+                                                <i class="fa fa-user" style="font-size: 21px;"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <div style=" margin-bottom: 20px;">
+                                    <div>
+                                        <span style=" max-width: 42px; text-align: center; background: none; border-width: 0 0 1px 0; padding-left: 5px; border-radius: 0;"><i class="fa fa-user" style="font-size: 21px;"></i></span>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+                                        <input asp-for="Password" type="password" name="Password" placeholder="Password" style="min-height: 38px; padding-left: 5px; box-shadow: none !important; border-width: 0 0 1px 0; border-radius: 0;" class="form-control" />
+                                    </div>
+                                </div>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div style=" margin-bottom: 20px;">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" style="background-color: #3b80d4; display: inline-block; margin: 50px auto; font-size: 16px; font-weight: bold; background: #19aa8d; border-radius: 3px; border: none; min-width: 140px; outline: none !important; margin-bottom:1rem;">Sign In</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div style=" color: #999; border-color: #dee4e7; text-align: center; margin: 0 -25px -25px; font-size: 13px; justify-content: center;">Don't have an account? <a asp-action="Register" style=" text-decoration: underline;">Create one</a></div>
+                </div>
+            </div>
+        </div>
+</body>
+        <!-- Modal HTML -->
+        <!--<div id="myModal" class="modal fade">
+            <div class="modal-dialog modal-login">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Sign In</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/examples/actions/confirmation.php" method="post">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                    <input type="text" class="form-control" name="password" placeholder="Password" required="required">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg">Sign In</button>
+                            </div>
+                            <p class="hint-text"><a href="#">Forgot Password?</a></p>
+                        </form>
+                    </div>
+                    <div class="modal-footer">Don't have an account? <a href="#">Create one</a></div>
+                </div>
+            </div>
+        </div>-->
+        @*<hr />
+
+            <div class="row">
+                <div class="col-md-4 ">
+                    <form asp-action="Login">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Password" class="control-label"></label>
+                            <input asp-for="Password" type="password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Login" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>*@
+
+        @*<div>
+                <a asp-action="Index">Back to List</a>
+            </div>*@
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
+        @*@section Styles {
+                <link href="@Url.Content("~/css/login.css")" rel="stylesheet" type="text/css" />
+            }*@

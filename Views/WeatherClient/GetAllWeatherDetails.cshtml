@@ -1,78 +1,121 @@
 ﻿@model IEnumerable<WeatherClient.Models.WeatherDetail>
 
 @{
-    ViewData["Title"] = "All Weather Details";
+    ViewData["Title"] = "GetAllWeatherDetails";
     Layout = "~/Views/Shared/_AfterLoginLayout.cshtml";
 }
+<body style="background-color: #eaffff; ">
 
-<h1>GetAllWeatherDetails</h1>
+    <form asp-action="Search" method="post">
+        <div class="row" style="display: flex; justify-content:space-between;">
+            <h1>All Weather Details</h1>
+            <div style="display: flex; justify-content:space-between; width:400px;">
+                <input type="text" style="margin-right: 1rem;" class="form-control" placeholder="Enter City" name="cityName" />
+                <input type="submit" style="height:38px;" class="btn btn-primary" value="Search" />
+            </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-@foreach (var item in Model)
-{
-    <div class="row mt-4">
-        <div class="col">
-            <div class="card">
-                <div class="card-header">
-                    <h1>@Html.DisplayFor(modelItem => item.City)</h1>
+            <p>
+                <a asp-action="CreateWeather">Create New</a>
+            </p>
+        </div>
+    </form>
+
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <div class="row">
+        <div class="col-4">
+            <div class="card" style="overflow-y: auto;">
+                <div class="card-header" style="background-color: #3b80d4">
+                    <h4>History</h4>
                 </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="row">
-                                <h4>Temparature</h4>
-                                <p> @Html.DisplayFor(modelItem => item.Temperature) </p>
-                            </div>
-                            <div class="row">
-                                <h4>Visibility</h4>
-                                <p> @Html.DisplayFor(modelItem => item.Visibility) </p>
-                            </div>
-                            <div class="row">
-                                <h4>Humidity</h4>
-                                <p> @Html.DisplayFor(modelItem => item.Humidity) </p>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            @if (item.Visibility <= 10)
-                            {
-                                <img src="~/css/misty.jfif" alt="Weather" />
-                            }
-                            @if (item.Visibility > 10 && item.Visibility <= 20)
-                            {
-                                <img src="~/css/cloudy.jfif" alt="Weather" />
-                            }
-                            @if (item.Visibility > 20 && item.Visibility <= 50)
-                            {
-                                <img src="~/css/clear.jfif" alt="Weather" />
-                            }
-                        </div>
-                        <div class="col-4">
-                            @if (item.Visibility <= 10)
-                            {
-                                <p>Today's weather in @item.City is Misty'</p>
-                            }
-                            @if (item.Visibility > 10 && item.Visibility <= 20)
-                            {
-                                <p>Today's weather in @item.City is Cloudy'</p>
-                            }
-                            @if (item.Visibility > 20 && item.Visibility <= 50)
-                            {
-                                <p>Today's weather in @item.City is Clear'</p>
-                            }
-                        </div>
+                <div class="card-body" style="background-color: #c0e2ff">
+                    <div>
+                        <p>ABC</p>
+                        <p>ABC</p>
+                        <p>ABC</p>
+                        <p>ABC</p>
+                        <p>ABC</p>
+                        <p>ABC</p>
+                        <p>ABC</p>
+                        <p>ABC</p>
+                        <p>ABC</p>
+                        <p>ABC</p>
+                        <p>ABC</p>
+                        <p>ABC</p>
                     </div>
-                </div>
-                <div class="card-footer">
-                    @Html.ActionLink("Edit Weather", "EditWeather", new { weatherID = item.Wid }) |
-                    @Html.ActionLink("Weather Details", "WeatherDetail", item) |
-                    @Html.ActionLink("Delete", "DeleteWeather", new { weatherID = item.Wid })
                 </div>
             </div>
         </div>
+        <div class="col-8">
+            @foreach (var item in Model)
+            {
+                <div>
+                    <div class="col">
+                        <div class="card" style="margin-bottom:3rem">
+                            <div class="card-header" style="background-color: #3b80d4">
+                                <h1>@Html.DisplayFor(modelItem => item.City)</h1>
+                            </div>
+                            <div class="card-body" style="background-color: #c0e2ff">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <h4>Temparature</h4>
+                                            <p> @Html.DisplayFor(modelItem => item.Temperature) </p>
+                                        </div>
+                                        <div class="row">
+                                            <h4>Visibility</h4>
+                                            <p> @Html.DisplayFor(modelItem => item.Visibility) </p>
+                                        </div>
+                                        <div class="row">
+                                            <h4>Humidity</h4>
+                                            <p> @Html.DisplayFor(modelItem => item.Humidity) </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        @if (item.Visibility <= 10)
+                                        {
+                                            <img src="~/css/misty.jfif" alt="Weather" />
+                                        }
+                                        @if (item.Visibility > 10 && item.Visibility <= 20)
+                                        {
+                                            <img src="~/css/cloudy.jfif" alt="Weather" />
+                                        }
+                                        @if (item.Visibility > 20 && item.Visibility <= 50)
+                                        {
+                                            <img src="~/css/clear.jfif" alt="Weather" />
+                                        }
+                                    </div>
+                                    <div class="col-4">
+                                        @if (item.Visibility <= 10)
+                                        {
+                                            <p>Today's weather in @item.City is Misty'</p>
+                                        }
+                                        @if (item.Visibility > 10 && item.Visibility <= 20)
+                                        {
+                                            <p>Today's weather in @item.City is Cloudy'</p>
+                                        }
+                                        @if (item.Visibility > 20 && item.Visibility <= 50)
+                                        {
+                                            <p>Today's weather in @item.City is Clear'</p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                @Html.ActionLink("Edit Weather", "EditWeather", new { weatherID = item.Wid }) |
+                                @Html.ActionLink("Weather Details", "WeatherDetail", item) |
+                                @Html.ActionLink("Delete", "DeleteWeather", new { weatherID = item.Wid })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
-}
+
+</body>
 @*<table class="table">
     <thead>
         <tr>
